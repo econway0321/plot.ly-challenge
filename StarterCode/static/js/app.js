@@ -1,37 +1,31 @@
-// var json = $.getJSON("samples.json",function(json) {
-// 	console.log(json);
+// d3.json("samples.json").then((samples)=> {
+// 	console.log(samples)
 // });
 
-d3.json("samples.json").then((samples)=> {
-	console.log(samples)
+function updatePage(){
+	var dropdownMenu=d3.selectAll("#selDataset");
+	d3.json("samples.json").then((samples)=> {
+	samples['names'].forEach((name)=>{
+	dropdownMenu.append('option').text(name).property('value',name);	
+	});
 });
+}
+updatePage();
 
-// var tableData = samples:
+// 	var dropdownNames=dropdownMenu.id;
+// 	var selectedDataset=drowdownMenu.value;
 
-// var tbody = d3.select("tbody");
-
-// console.log()
-
-// function init() {
-// 	data = [{
-// 		x: [0, 50, 100, 150],
-// 		y: [otu_ids]}];
-
-// 	Plotly.newPlot("plot",data);
+// 	console.log(dropdownNames);
+// 	console.log(selectedDataset);
 // }
 
-// d3.selectAll("#selDataset").on("change",updatePlotly);
+// d3.selectAll("#selDataset").on("change", updatePlotly);
 
-// function updatePlotly(){
-// 	var dropdownMenu = d3.select("#selDataset");
-// 	var dataset = dropdownMeanu.property("value");
-// 	var x = [];
-// 	var y = [];
+// function updatePlotly() {
+//  	var dropdownMenu = d3.select("#selDataset");
+//  	var dataset = dropdownMenu.property("");
 
-// 	if (dataset === 'dataset1') {
-// 	  x = [0, 50, 100 ,150]
-// 	  y = [otu_ids];
-// 	}
-
-
+//  	console.log(dropdownMenu);
+//  	console.log(dataset);
 // }
+//slicedData = buttonData.slice(0,10);
