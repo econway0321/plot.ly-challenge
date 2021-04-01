@@ -1,6 +1,4 @@
-// d3.json("samples.json").then((samples)=> {
-// 	console.log(samples)
-// });
+
 
 function updatePage(){
 	var dropdownMenu=d3.selectAll("#selDataset");
@@ -10,22 +8,49 @@ function updatePage(){
 	});
 });
 }
+
 updatePage();
 
-// 	var dropdownNames=dropdownMenu.id;
-// 	var selectedDataset=drowdownMenu.value;
+function buildPlot(sampleid){
+d3.json("samples.json").then((samples)=> {
+	var name = samples.names;
+	var result = samples.samples.filter(x=>x.id==sampleid)[0]
+	console.log(sampleid)
+	var otuid = result.otu_ids;
+	var samid = result.sample_values;
+	
+	console.log(samples.samples)
+	console.log(otuid)
+	console.log(samid)
 
-// 	console.log(dropdownNames);
-// 	console.log(selectedDataset);
-// }
+	var y_tick = otuid.map(x=>`otu ${x}`).slice(0,10)
 
-// d3.selectAll("#selDataset").on("change", updatePlotly);
+	var trace1 = {
+	  	type: "bar",
+	  	x: samid.slice(0,10),
+	  	y: y_tick,
+	  	orientation: 'h'
+	  	
+	};
 
-// function updatePlotly() {
-//  	var dropdownMenu = d3.select("#selDataset");
-//  	var dataset = dropdownMenu.property("");
+	var bar_data = [trace1];
 
-//  	console.log(dropdownMenu);
-//  	console.log(dataset);
-// }
-//slicedData = buttonData.slice(0,10);
+	var bar_layout = {
+		title: 'Top 10 Bacteria Culters Found',
+		margin: {
+			t:30,
+			l:150
+		}
+	}
+
+	Plotly.newPlot('bar', bar_data,bar_layout);
+
+});
+}
+
+buildPlot(940);	
+
+function optionChanged(newsample){
+	buildPlot(newsample)
+
+}
