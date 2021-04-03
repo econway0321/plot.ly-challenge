@@ -18,14 +18,21 @@ d3.json("samples.json").then((samples)=> {
 	console.log(sampleid)
 	var otuid = result.otu_ids;
 	var samid = result.sample_values;
-	// var id = samples.samples[0].otu_ids;
-	// var values = samples.sample_values;
-
 	
 	console.log(samples.samples)
 	console.log(otuid)
 	console.log(samid)
 	
+
+	var filtermeta=samples.metadata.filter(x=>x.id==sampleid)[0];
+	console.log(filtermeta)
+
+	// Object.entries(filtermeta[0]).forEach(function([key,value]){
+	// 	var row = tbody.append("tr");
+	// 	row.append("td").text(key.concat(":", value));
+	// 	cell.text(value);
+	//  	});
+	//  });
 
 	var y_tick = otuid.map(x=>`otu ${x}`).slice(0,10).reverse()
 
@@ -72,12 +79,6 @@ d3.json("samples.json").then((samples)=> {
 
 	Plotly.newPlot('bubble',bubble_data,bubble_layout);
 
-	// var current_metadata-metadata.filter(meta=>meta.id==name);
-	// Object.entries(current_metadata[0]).forEach(([key,value])=>
-	// 	row-table_body.append('tr');
-	// 	row.append('td').text(key.concat(":",value));
-
-
 });
 }
 
@@ -87,10 +88,3 @@ function optionChanged(newsample){
 	buildPlot(newsample)
 
 }
-
-
-
-
-
-
-
