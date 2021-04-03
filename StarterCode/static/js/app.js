@@ -55,8 +55,9 @@ d3.json("samples.json").then((samples)=> {
 		y: samid,
 		mode: 'markers',
 		marker: {
-			
-			size: [40,60,80,100]
+			color: ['#1f77b4','#ff7f0e',
+			'#2ca02c', '#d62728','#9467bd', '#8c564b', '#e377c2','#7f7f7f',  '#bcbd22', '#17becf'],
+			size: [15,20,25,30,35,40,45,50,55,60]
 		}
 	};
 
@@ -70,6 +71,12 @@ d3.json("samples.json").then((samples)=> {
 
 
 	Plotly.newPlot('bubble',bubble_data,bubble_layout);
+
+	// var current_metadata-metadata.filter(meta=>meta.id==name);
+	// Object.entries(current_metadata[0]).forEach(([key,value])=>
+	// 	row-table_body.append('tr');
+	// 	row.append('td').text(key.concat(":",value));
+
 
 });
 }
